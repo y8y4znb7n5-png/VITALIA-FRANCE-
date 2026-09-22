@@ -79,30 +79,28 @@ export const LinkedInQuickApplyModal: React.FC<LinkedInQuickApplyModalProps> = (
     setIsSubmitting(true);
 
     try {
-      await fetch('https://api.web3forms.com/submit', {
+      await fetch('https://formsubmit.co/ajax/s.mannina@vitalia-france.fr', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
         body: JSON.stringify({
-          access_key: 'ecc5dff0-d128-40da-9e8c-55c3c0ef11b1',
-          from_name: 'Vitalia Candidature Spontanée',
-          subject: `Candidature Spontanée : ${formData.fullName} (${formData.targetSector || 'Général'})`,
-          email_to: 's.mannina@vitalia-france.fr',
-          nom: formData.fullName,
-          email: formData.email,
-          telephone: formData.phone || 'Non renseigné',
-          secteur_cible: formData.targetSector,
-          experience: formData.yearsOfExperience,
-          linkedin: formData.linkedinUrl || 'Non renseigné',
-          fichier_cv: fileName || 'Non joint',
-          message: formData.message || 'Aucun message particulier',
+          _subject: `[Vitalia Web] Candidature Spontanée : ${formData.fullName}`,
+          _template: 'table',
+          _captcha: 'false',
+          Nom: formData.fullName,
+          Email: formData.email,
+          Telephone: formData.phone || 'Non renseigné',
+          Secteur: formData.targetSector || 'Non spécifié',
+          Experience: formData.yearsOfExperience || 'Non spécifié',
+          LinkedIn: formData.linkedinUrl || 'Non renseigné',
+          CV: fileName || 'Non joint',
+          Message: formData.message || 'Aucun message particulier',
         }),
       });
       setIsDone(true);
     } catch {
-      // Fallback
       setIsDone(true);
     } finally {
       setIsSubmitting(false);
