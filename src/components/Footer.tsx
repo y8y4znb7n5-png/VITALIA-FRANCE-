@@ -116,14 +116,14 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuickApply, onOpenContact 
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-[#55AAA5] shrink-0" />
-                <a href="mailto:s.mannina@vitalia-france.fr" className="hover:text-white py-1 inline-block">
-                  s.mannina@vitalia-france.fr
+                <a href="mailto:contact@vitalia-france.fr" className="hover:text-white py-1 inline-block">
+                  contact@vitalia-france.fr
                 </a>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-[#55AAA5] shrink-0" />
-                <a href="tel:+33189456720" className="hover:text-white py-1 inline-block">
-                  +33 (0)1 89 45 67 20
+                <a href="tel:+33699372227" className="hover:text-white py-1 inline-block">
+                  +33 6 99 37 22 27
                 </a>
               </div>
             </div>

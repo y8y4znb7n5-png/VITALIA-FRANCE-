@@ -79,7 +79,7 @@ export const LinkedInQuickApplyModal: React.FC<LinkedInQuickApplyModalProps> = (
     setIsSubmitting(true);
 
     try {
-      await fetch('https://formsubmit.co/ajax/s.mannina@vitalia-france.fr', {
+      await fetch('https://formsubmit.co/ajax/contact@vitalia-france.fr', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

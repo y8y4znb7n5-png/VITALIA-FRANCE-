@@ -29,8 +29,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
     setErrorMessage(null);
 
     try {
-      // Envoi direct en arrière-plan à s.mannina@vitalia-france.fr sans ouvrir d'application mail
-      const response = await fetch('https://formsubmit.co/ajax/s.mannina@vitalia-france.fr', {
+      // Envoi direct en arrière-plan à contact@vitalia-france.fr sans ouvrir d'application mail
+      const response = await fetch('https://formsubmit.co/ajax/contact@vitalia-france.fr', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -99,8 +99,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 </div>
                 <div>
                   <p className="text-slate-400 text-[11px]">Email direct</p>
-                  <a href="mailto:s.mannina@vitalia-france.fr" className="font-semibold text-white hover:text-[#55AAA5]">
-                    s.mannina@vitalia-france.fr
+                  <a href="mailto:contact@vitalia-france.fr" className="font-semibold text-white hover:text-[#55AAA5]">
+                    contact@vitalia-france.fr
                   </a>
                 </div>
               </div>
@@ -111,8 +111,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 </div>
                 <div>
                   <p className="text-slate-400 text-[11px]">Téléphone</p>
-                  <a href="tel:+33189704200" className="font-semibold text-white hover:text-[#55AAA5]">
-                    +33 1 89 70 42 00
+                  <a href="tel:+33699372227" className="font-semibold text-white hover:text-[#55AAA5]">
+                    +33 6 99 37 22 27
                   </a>
                 </div>
               </div>
