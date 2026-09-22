@@ -123,7 +123,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 </div>
                 <div>
                   <p className="text-slate-400 text-[11px]">Bureaux</p>
-                  <p className="font-semibold text-white">Paris • Lyon • Bâle</p>
+                  <p className="font-semibold text-white">Paris • Lyon</p>
                 </div>
               </div>
             </div>
