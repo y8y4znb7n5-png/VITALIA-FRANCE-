@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+
+  --color-vitalia-navy: #0B2F63;
+  --color-vitalia-navy-dark: #071C3C;
+  --color-vitalia-navy-light: #18427F;
+  --color-vitalia-teal: #55AAA5;
+  --color-vitalia-teal-dark: #3F8F8A;
+  --color-vitalia-teal-light: #EEF8F7;
+  --color-vitalia-teal-glow: rgba(85, 170, 165, 0.18);
+  --color-vitalia-light: #F2F4F7;
+  --color-vitalia-border: #E2E8F0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+}
+
+/* Optimisation mobile : éviter le zoom automatique sur iOS (Safari) sur les champs de formulaire */
+@media screen and (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Zone tactile optimisée pour les écrans tactiles */
+button, a, input, select {
+  touch-action: manipulation;
+}
+

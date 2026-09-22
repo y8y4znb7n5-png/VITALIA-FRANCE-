@@ -1,0 +1,8 @@
+{
+  "name": "Remix Vitalia - Recrutement LifeSciences",
+  "description": "Cabinet de recrutement spécialisé en LifeSciences : industrie pharmaceutique, biotechnologies, medtech et diagnostics. Services entreprises et candidats, candidature rapide LinkedIn et blog sectoriel.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
