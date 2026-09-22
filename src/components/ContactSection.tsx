@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle2, ShieldCheck, Building2, User } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle2, ShieldCheck, Building2, User, AlertCircle } from 'lucide-react';
 import { FadeInSection } from './FadeInSection';
 
 interface ContactSectionProps {
@@ -21,14 +21,66 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+    setErrorMessage(null);
+
+    try {
+      // Envoi direct du message à l'adresse indiquée via l'API Web3Forms
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: 'ecc5dff0-d128-40da-9e8c-55c3c0ef11b1', // Clé publique de routage Web3Forms
+          from_name: `Vitalia Web (${profileType === 'entreprise' ? 'Entreprise' : 'Candidat'})`,
+          subject: `Nouveau message Vitalia de ${formData.fullName} [${profileType.toUpperCase()}]`,
+          email_to: 's.mannina@vitalia-france.fr',
+          name: formData.fullName,
+          email: formData.email,
+          phone: formData.phone || 'Non renseigné',
+          profil: profileType === 'entreprise' ? 'Entreprise / Recruteur' : 'Candidat LifeSciences',
+          organisation: formData.organization || 'Non renseigné',
+          message: formData.message,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && (result.success || result.message)) {
+        setIsSubmitted(true);
+        setFormData({
+          fullName: '',
+          email: '',
+          phone: '',
+          organization: '',
+          message: '',
+        });
+      } else {
+        // En cas de blocage réseau ou clé, proposer le fallback email direct pré-rempli
+        triggerMailtoFallback();
+        setIsSubmitted(true);
+      }
+    } catch {
+      // Fallback gracieux si hors-ligne ou bloqué
+      triggerMailtoFallback();
       setIsSubmitted(true);
-    }, 700);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const triggerMailtoFallback = () => {
+    const subject = encodeURIComponent(`[Vitalia - ${profileType}] Contact de ${formData.fullName}`);
+    const body = encodeURIComponent(
+      `Nom: ${formData.fullName}\nEmail: ${formData.email}\nTéléphone: ${formData.phone}\nOrganisation: ${formData.organization}\nType: ${profileType}\n\nMessage:\n${formData.message}`
+    );
+    window.location.href = `mailto:s.mannina@vitalia-france.fr?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -60,8 +112,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 </div>
                 <div>
                   <p className="text-slate-400 text-[11px]">Email direct</p>
-                  <a href="mailto:contact@vitalia-recrutement.fr" className="font-semibold text-white hover:text-[#55AAA5]">
-                    contact@vitalia-recrutement.fr
+                  <a href="mailto:s.mannina@vitalia-france.fr" className="font-semibold text-white hover:text-[#55AAA5]">
+                    s.mannina@vitalia-france.fr
                   </a>
                 </div>
               </div>
@@ -209,6 +261,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     className="w-full px-3.5 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-base sm:text-sm focus:outline-none focus:border-[#55AAA5] leading-relaxed"
                   />
                 </div>
+
+                {errorMessage && (
+                  <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-200 text-xs flex items-center gap-2">
+                    <AlertCircle className="w-4 h-4 text-amber-400 shrink-0" />
+                    <span>{errorMessage}</span>
+                  </div>
+                )}
 
                 <button
                   type="submit"

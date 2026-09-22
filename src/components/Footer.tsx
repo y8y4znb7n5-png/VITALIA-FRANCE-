@@ -116,8 +116,8 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuickApply, onOpenContact 
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-[#55AAA5] shrink-0" />
-                <a href="mailto:contact@vitalia-lifesciences.com" className="hover:text-white py-1 inline-block">
-                  contact@vitalia-lifesciences.com
+                <a href="mailto:s.mannina@vitalia-france.fr" className="hover:text-white py-1 inline-block">
+                  s.mannina@vitalia-france.fr
                 </a>
               </div>
               <div className="flex items-center gap-2">
