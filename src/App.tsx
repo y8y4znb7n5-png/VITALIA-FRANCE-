@@ -48,28 +48,30 @@ export default function App() {
     setQuickApplyOpen(true);
   };
 
+  const scrollToId = (elementId: string) => {
+    const el = document.getElementById(elementId);
+    if (!el) return;
+    const navbarHeight = 75;
+    const y = el.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  };
+
   const handleOpenContact = (profileType: 'entreprise' | 'candidat' = 'entreprise', subject?: string) => {
     setContactProfileType(profileType);
     if (subject) {
       setContactSubject(subject);
     }
-    const contactElement = document.getElementById('contact');
-    if (contactElement) {
-      contactElement.scrollIntoView({ behavior: 'smooth' });
-    }
+    scrollToId('contact');
   };
 
   const handleSelectSectorForContact = (sectorTitle: string) => {
     setContactProfileType('entreprise');
     setContactSubject(`Échange sur le pôle : ${sectorTitle}`);
-    const contactElement = document.getElementById('contact');
-    if (contactElement) {
-      contactElement.scrollIntoView({ behavior: 'smooth' });
-    }
+    scrollToId('contact');
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#071C3C] text-slate-100 font-sans antialiased selection:bg-[#55AAA5] selection:text-[#071C3C]">
+    <div className="min-h-screen flex flex-col bg-[#071C3C] text-slate-100 font-sans antialiased overflow-x-clip selection:bg-[#55AAA5] selection:text-[#071C3C]">
       {/* Barre de navigation épurée */}
       <Navbar
         activeSection={activeSection}

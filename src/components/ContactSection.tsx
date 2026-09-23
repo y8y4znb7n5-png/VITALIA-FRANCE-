@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, CheckCircle2, ShieldCheck, Building2, User, AlertCircle } from 'lucide-react';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../lib/firebase';
 import { FadeInSection } from './FadeInSection';
 
 interface ContactSectionProps {
@@ -27,6 +29,21 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
     e.preventDefault();
     setIsSubmitting(true);
     setErrorMessage(null);
+
+    // Sauvegarde persistante dans la base Firestore du projet Google Cloud
+    try {
+      await addDoc(collection(db, 'contact_messages'), {
+        fullName: formData.fullName,
+        email: formData.email,
+        phone: formData.phone || '',
+        organization: formData.organization || '',
+        profileType: profileType,
+        message: formData.message,
+        createdAt: new Date().toISOString(),
+      });
+    } catch (e) {
+      console.warn('Firestore fallback sync:', e);
+    }
 
     try {
       // Envoi direct en arrière-plan à contact@vitalia-france.fr sans ouvrir d'application mail
@@ -99,7 +116,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 </div>
                 <div>
                   <p className="text-slate-400 text-[11px]">Email direct</p>
-                  <a href="mailto:contact@vitalia-france.fr" className="font-semibold text-white hover:text-[#55AAA5]">
+                  <a href="mailto:contact@vitalia-france.fr" className="font-semibold text-white hover:text-[#55AAA5] min-h-[44px] inline-flex items-center">
                     contact@vitalia-france.fr
                   </a>
                 </div>
@@ -111,7 +128,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 </div>
                 <div>
                   <p className="text-slate-400 text-[11px]">Téléphone</p>
-                  <a href="tel:+33699372227" className="font-semibold text-white hover:text-[#55AAA5]">
+                  <a href="tel:+33699372227" className="font-semibold text-white hover:text-[#55AAA5] min-h-[44px] inline-flex items-center">
                     +33 6 99 37 22 27
                   </a>
                 </div>
@@ -147,19 +164,19 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 </p>
                 <button
                   onClick={() => setIsSubmitted(false)}
-                  className="mt-4 px-5 py-2 text-xs font-semibold text-white bg-white/10 hover:bg-white/15 rounded-xl transition-all cursor-pointer"
+                  className="mt-4 min-h-[48px] px-6 py-2.5 text-xs sm:text-sm font-semibold text-white bg-white/10 hover:bg-white/15 rounded-xl transition-all cursor-pointer inline-flex items-center justify-center"
                 >
                   Envoyer une autre demande
                 </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Sélecteur de profil intuitif tactile (min 44px) */}
+                {/* Sélecteur de profil tactile garanti min 48px */}
                 <div className="grid grid-cols-2 gap-2 p-1.5 bg-black/20 rounded-xl border border-white/10">
                   <button
                     type="button"
                     onClick={() => setProfileType('entreprise')}
-                    className={`flex items-center justify-center gap-2 py-3 px-2 rounded-lg text-xs sm:text-sm font-semibold min-h-[44px] transition-all cursor-pointer ${
+                    className={`flex items-center justify-center gap-2 py-3.5 px-3 rounded-lg text-xs sm:text-sm font-semibold min-h-[48px] transition-all cursor-pointer ${
                       profileType === 'entreprise'
                         ? 'bg-[#55AAA5] text-[#071C3C] shadow-sm'
                         : 'text-slate-300 hover:text-white'
@@ -171,7 +188,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   <button
                     type="button"
                     onClick={() => setProfileType('candidat')}
-                    className={`flex items-center justify-center gap-2 py-3 px-2 rounded-lg text-xs sm:text-sm font-semibold min-h-[44px] transition-all cursor-pointer ${
+                    className={`flex items-center justify-center gap-2 py-3.5 px-3 rounded-lg text-xs sm:text-sm font-semibold min-h-[48px] transition-all cursor-pointer ${
                       profileType === 'candidat'
                         ? 'bg-[#55AAA5] text-[#071C3C] shadow-sm'
                         : 'text-slate-300 hover:text-white'
@@ -192,7 +209,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       required
                       value={formData.fullName}
                       onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                      className="w-full min-h-[46px] px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-base sm:text-sm focus:outline-none focus:border-[#55AAA5]"
+                      className="w-full min-h-[48px] px-3.5 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-base sm:text-sm focus:outline-none focus:border-[#55AAA5]"
                     />
                   </div>
 
@@ -205,7 +222,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full min-h-[46px] px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-base sm:text-sm focus:outline-none focus:border-[#55AAA5]"
+                      className="w-full min-h-[48px] px-3.5 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-base sm:text-sm focus:outline-none focus:border-[#55AAA5]"
                     />
                   </div>
                 </div>
@@ -219,7 +236,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       type="tel"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full min-h-[46px] px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-base sm:text-sm focus:outline-none focus:border-[#55AAA5]"
+                      className="w-full min-h-[48px] px-3.5 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-base sm:text-sm focus:outline-none focus:border-[#55AAA5]"
                     />
                   </div>
 
@@ -231,7 +248,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       type="text"
                       value={formData.organization}
                       onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
-                      className="w-full min-h-[46px] px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-base sm:text-sm focus:outline-none focus:border-[#55AAA5]"
+                      className="w-full min-h-[48px] px-3.5 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-base sm:text-sm focus:outline-none focus:border-[#55AAA5]"
                     />
                   </div>
                 </div>

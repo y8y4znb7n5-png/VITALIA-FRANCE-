@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../lib/firebase';
 import { QuickApplyData } from '../types';
 import {
   X,
@@ -79,6 +81,22 @@ export const LinkedInQuickApplyModal: React.FC<LinkedInQuickApplyModalProps> = (
     setIsSubmitting(true);
 
     try {
+      await addDoc(collection(db, 'candidacies'), {
+        fullName: formData.fullName,
+        email: formData.email,
+        phone: formData.phone || '',
+        targetSector: formData.targetSector || '',
+        yearsOfExperience: formData.yearsOfExperience || '',
+        linkedinUrl: formData.linkedinUrl || '',
+        fileName: fileName || '',
+        message: formData.message || '',
+        createdAt: new Date().toISOString(),
+      });
+    } catch (e) {
+      console.warn('Firestore candidacy sync:', e);
+    }
+
+    try {
       await fetch('https://formsubmit.co/ajax/contact@vitalia-france.fr', {
         method: 'POST',
         headers: {
@@ -124,10 +142,10 @@ export const LinkedInQuickApplyModal: React.FC<LinkedInQuickApplyModalProps> = (
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-xs">
       <div className="bg-white rounded-3xl max-w-xl w-full max-h-[92dvh] overflow-y-auto p-5 sm:p-8 shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
-        {/* Close Button tactile (min 44x44px) */}
+        {/* Close Button tactile (garanti min 48x48px) */}
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 sm:top-5 sm:right-5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+          className="absolute top-2 right-2 sm:top-4 sm:right-4 min-w-[48px] min-h-[48px] p-3 flex items-center justify-center rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
           aria-label="Fermer la boîte de dialogue"
         >
           <X className="w-5 h-5" />
@@ -155,7 +173,7 @@ export const LinkedInQuickApplyModal: React.FC<LinkedInQuickApplyModalProps> = (
 
             <button
               onClick={resetAll}
-              className="mt-4 min-h-[44px] px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white bg-[#0B2F63] hover:bg-[#18427F] transition-all cursor-pointer"
+              className="mt-4 min-h-[48px] px-8 py-3 rounded-xl text-xs sm:text-sm font-bold text-white bg-[#0B2F63] hover:bg-[#18427F] transition-all cursor-pointer inline-flex items-center justify-center"
             >
               Fermer
             </button>
@@ -202,7 +220,7 @@ export const LinkedInQuickApplyModal: React.FC<LinkedInQuickApplyModalProps> = (
                 id="btn-sync-linkedin-profile"
                 onClick={handleLinkedInQuickSync}
                 disabled={isImporting}
-                className="w-full sm:w-auto shrink-0 min-h-[44px] inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white bg-[#0077B5] hover:bg-[#005f93] active:bg-[#004b75] transition-all disabled:opacity-50 cursor-pointer"
+                className="w-full sm:w-auto shrink-0 min-h-[48px] inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-xs sm:text-sm font-bold text-white bg-[#0077B5] hover:bg-[#005f93] active:bg-[#004b75] transition-all disabled:opacity-50 cursor-pointer"
               >
                 {isImporting ? (
                   <>
@@ -236,7 +254,7 @@ export const LinkedInQuickApplyModal: React.FC<LinkedInQuickApplyModalProps> = (
                     placeholder="Dr. Thomas Bernard"
                     value={formData.fullName}
                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                    className="w-full min-h-[44px] px-3.5 py-2.5 text-base sm:text-sm rounded-xl bg-[#F2F4F7] border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#55AAA5] focus:bg-white"
+                    className="w-full min-h-[48px] px-3.5 py-3 text-base sm:text-sm rounded-xl bg-[#F2F4F7] border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#55AAA5] focus:bg-white"
                   />
                 </div>
 
@@ -250,7 +268,7 @@ export const LinkedInQuickApplyModal: React.FC<LinkedInQuickApplyModalProps> = (
                     placeholder="t.bernard@biotech.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full min-h-[44px] px-3.5 py-2.5 text-base sm:text-sm rounded-xl bg-[#F2F4F7] border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#55AAA5] focus:bg-white"
+                    className="w-full min-h-[48px] px-3.5 py-3 text-base sm:text-sm rounded-xl bg-[#F2F4F7] border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#55AAA5] focus:bg-white"
                   />
                 </div>
               </div>
@@ -265,7 +283,7 @@ export const LinkedInQuickApplyModal: React.FC<LinkedInQuickApplyModalProps> = (
                     placeholder="+33 6 00 00 00 00"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full min-h-[44px] px-3.5 py-2.5 text-base sm:text-sm rounded-xl bg-[#F2F4F7] border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#55AAA5] focus:bg-white"
+                    className="w-full min-h-[48px] px-3.5 py-3 text-base sm:text-sm rounded-xl bg-[#F2F4F7] border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#55AAA5] focus:bg-white"
                   />
                 </div>
 
@@ -281,7 +299,7 @@ export const LinkedInQuickApplyModal: React.FC<LinkedInQuickApplyModalProps> = (
                       placeholder="https://linkedin.com/in/votre-profil"
                       value={formData.linkedinUrl}
                       onChange={(e) => setFormData({ ...formData, linkedinUrl: e.target.value })}
-                      className="w-full min-h-[44px] pl-9 pr-3.5 py-2.5 text-base sm:text-sm rounded-xl bg-[#F2F4F7] border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#55AAA5] focus:bg-white"
+                      className="w-full min-h-[48px] pl-9 pr-3.5 py-3 text-base sm:text-sm rounded-xl bg-[#F2F4F7] border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#55AAA5] focus:bg-white"
                     />
                   </div>
                 </div>
@@ -295,7 +313,7 @@ export const LinkedInQuickApplyModal: React.FC<LinkedInQuickApplyModalProps> = (
                   <select
                     value={formData.sector}
                     onChange={(e) => setFormData({ ...formData, sector: e.target.value })}
-                    className="w-full min-h-[44px] px-3.5 py-2.5 text-base sm:text-sm rounded-xl bg-[#F2F4F7] border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#55AAA5] focus:bg-white"
+                    className="w-full min-h-[48px] px-3.5 py-3 text-base sm:text-sm rounded-xl bg-[#F2F4F7] border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#55AAA5] focus:bg-white"
                   >
                     <option value="Pharmaceutique">Industrie Pharmaceutique</option>
                     <option value="Biotechnologies">Biotechnologies & ATMP</option>
@@ -311,7 +329,7 @@ export const LinkedInQuickApplyModal: React.FC<LinkedInQuickApplyModalProps> = (
                   <select
                     value={formData.yearsOfExperience}
                     onChange={(e) => setFormData({ ...formData, yearsOfExperience: e.target.value })}
-                    className="w-full min-h-[44px] px-3.5 py-2.5 text-base sm:text-sm rounded-xl bg-[#F2F4F7] border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#55AAA5] focus:bg-white"
+                    className="w-full min-h-[48px] px-3.5 py-3 text-base sm:text-sm rounded-xl bg-[#F2F4F7] border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#55AAA5] focus:bg-white"
                   >
                     <option value="1-3 ans (Junior)">1-3 ans (Junior / Post-doc)</option>
                     <option value="3-7 ans (Confirmé)">3-7 ans (Confirmé)</option>
@@ -329,7 +347,7 @@ export const LinkedInQuickApplyModal: React.FC<LinkedInQuickApplyModalProps> = (
                 <div className="flex flex-wrap items-center gap-3">
                   <label
                     htmlFor="quick-cv-upload"
-                    className="cursor-pointer min-h-[44px] inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-slate-700 bg-[#F2F4F7] border border-slate-200 hover:bg-slate-200/70 active:bg-slate-300 transition-colors"
+                    className="cursor-pointer min-h-[48px] inline-flex items-center gap-2 px-5 py-3 rounded-xl text-xs sm:text-sm font-semibold text-slate-700 bg-[#F2F4F7] border border-slate-200 hover:bg-slate-200/70 active:bg-slate-300 transition-colors"
                   >
                     <Upload className="w-4 h-4 text-[#55AAA5]" />
                     <span>{fileName ? 'Changer de CV' : 'Téléverser un CV (PDF)'}</span>

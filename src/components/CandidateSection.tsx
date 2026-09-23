@@ -86,10 +86,10 @@ export const CandidateSection: React.FC<CandidateSectionProps> = ({
           </div>
           <button
             onClick={() => onOpenContact('candidat', 'Échange confidentiel de carrière')}
-            className="w-full sm:w-auto min-h-[44px] justify-center px-4 py-2.5 rounded-xl bg-white/5 sm:bg-transparent border border-white/10 sm:border-0 text-xs sm:text-sm font-semibold text-[#55AAA5] hover:text-[#74C7C2] flex items-center gap-1.5 cursor-pointer transition-colors"
+            className="w-full sm:w-auto min-h-[48px] justify-center px-5 py-3 rounded-xl bg-white/5 sm:bg-transparent border border-white/10 sm:border-0 text-xs sm:text-sm font-semibold text-[#55AAA5] hover:text-[#74C7C2] flex items-center gap-2 cursor-pointer transition-colors"
           >
             <span>Prendre contact avec un consultant</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            <ArrowRight className="w-4 h-4" />
           </button>
         </div>
 

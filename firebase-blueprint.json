@@ -1,0 +1,46 @@
+{
+  "entities": {
+    "ContactMessage": {
+      "title": "ContactMessage",
+      "description": "Messages reçus via le formulaire de contact du site",
+      "type": "object",
+      "properties": {
+        "fullName": { "type": "string", "minLength": 1 },
+        "email": { "type": "string", "minLength": 3 },
+        "phone": { "type": "string" },
+        "organization": { "type": "string" },
+        "profileType": { "type": "string", "enum": ["entreprise", "candidat"] },
+        "message": { "type": "string", "minLength": 1 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["fullName", "email", "profileType", "message", "createdAt"]
+    },
+    "Candidacy": {
+      "title": "Candidacy",
+      "description": "Candidatures spontanées soumises via le site",
+      "type": "object",
+      "properties": {
+        "fullName": { "type": "string", "minLength": 1 },
+        "email": { "type": "string", "minLength": 3 },
+        "phone": { "type": "string" },
+        "targetSector": { "type": "string" },
+        "yearsOfExperience": { "type": "string" },
+        "linkedinUrl": { "type": "string" },
+        "fileName": { "type": "string" },
+        "message": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["fullName", "email", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/contact_messages/{messageId}": {
+      "schema": "ContactMessage",
+      "description": "Collection des messages du formulaire de contact"
+    },
+    "/candidacies/{candidacyId}": {
+      "schema": "Candidacy",
+      "description": "Collection des candidatures spontanées"
+    }
+  }
+}

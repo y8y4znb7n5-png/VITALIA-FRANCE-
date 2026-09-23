@@ -20,7 +20,7 @@ export const FadeInSection: React.FC<FadeInSectionProps> = ({
   return (
     <section
       id={id}
-      className={`relative min-h-screen flex flex-col justify-center ${className}`}
+      className={`relative w-full ${className}`}
     >
       <div className="w-full">
         {children}

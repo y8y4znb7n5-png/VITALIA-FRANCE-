@@ -242,16 +242,16 @@ export const EuropePresenceSection: React.FC<EuropePresenceSectionProps> = ({
                   <span>{activeCountry.stats}</span>
                 </div>
 
-                {/* 3. Les 3 boutons circulaires (Lien, Vidéo/Échanger, Info) exactement comme dans la capture */}
+                {/* 3. Les 3 boutons circulaires (Lien, Vidéo/Échanger, Info) avec hit-box mobile au moins 48px x 48px */}
                 <div className="pt-2 flex flex-wrap items-center gap-4 sm:gap-6">
                   {/* Bouton 1 : LIEN */}
                   <button
                     id="map-btn-link"
                     onClick={() => onOpenQuickApply(undefined, activeCountry.name)}
-                    className="group inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-200 hover:text-white transition-colors cursor-pointer min-h-[44px]"
+                    className="group inline-flex items-center gap-2.5 text-xs sm:text-sm font-bold text-slate-200 hover:text-white transition-colors cursor-pointer min-h-[48px] min-w-[48px]"
                   >
-                    <span className="w-10 h-10 rounded-full bg-[#55AAA5] text-white flex items-center justify-center shadow-xs group-hover:scale-105 group-hover:bg-[#459691] transition-all">
-                      <Link2 className="w-4 h-4" />
+                    <span className="w-12 h-12 rounded-full bg-[#55AAA5] text-white flex items-center justify-center shadow-xs group-hover:scale-105 group-hover:bg-[#459691] transition-all">
+                      <Link2 className="w-5 h-5" />
                     </span>
                     <span className="uppercase tracking-wider text-xs">Lien</span>
                   </button>
@@ -260,10 +260,10 @@ export const EuropePresenceSection: React.FC<EuropePresenceSectionProps> = ({
                   <button
                     id="map-btn-video"
                     onClick={() => onOpenContact('entreprise', `Échange projet - ${activeCountry.name}`)}
-                    className="group inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-200 hover:text-white transition-colors cursor-pointer min-h-[44px]"
+                    className="group inline-flex items-center gap-2.5 text-xs sm:text-sm font-bold text-slate-200 hover:text-white transition-colors cursor-pointer min-h-[48px] min-w-[48px]"
                   >
-                    <span className="w-10 h-10 rounded-full bg-[#18427F] text-white flex items-center justify-center shadow-xs group-hover:scale-105 group-hover:bg-[#20529C] transition-all">
-                      <Play className="w-4 h-4 ml-0.5 fill-current" />
+                    <span className="w-12 h-12 rounded-full bg-[#18427F] text-white flex items-center justify-center shadow-xs group-hover:scale-105 group-hover:bg-[#20529C] transition-all">
+                      <Play className="w-5 h-5 ml-0.5 fill-current" />
                     </span>
                     <span className="uppercase tracking-wider text-xs">Échanger</span>
                   </button>
@@ -272,10 +272,10 @@ export const EuropePresenceSection: React.FC<EuropePresenceSectionProps> = ({
                   <button
                     id="map-btn-info"
                     onClick={() => setShowInfoModal(true)}
-                    className="group inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-200 hover:text-white transition-colors cursor-pointer min-h-[44px]"
+                    className="group inline-flex items-center gap-2.5 text-xs sm:text-sm font-bold text-slate-200 hover:text-white transition-colors cursor-pointer min-h-[48px] min-w-[48px]"
                   >
-                    <span className="w-10 h-10 rounded-full bg-[#55AAA5] text-white flex items-center justify-center shadow-xs group-hover:scale-105 group-hover:bg-[#459691] transition-all">
-                      <Info className="w-4 h-4" />
+                    <span className="w-12 h-12 rounded-full bg-[#55AAA5] text-white flex items-center justify-center shadow-xs group-hover:scale-105 group-hover:bg-[#459691] transition-all">
+                      <Info className="w-5 h-5" />
                     </span>
                     <span className="uppercase tracking-wider text-xs">Info</span>
                   </button>
@@ -287,19 +287,19 @@ export const EuropePresenceSection: React.FC<EuropePresenceSectionProps> = ({
           {/* Colonne Droite : Carte exacte de l'Europe sombre avec traits fins + Icône "V" sur chaque pays */}
           <div className="lg:col-span-7 flex flex-col items-center">
             
-            {/* Raccourcis rapides sous forme de pills tactiles */}
-            <div className="w-full flex items-center justify-center gap-1.5 sm:gap-2 mb-4 flex-wrap">
+            {/* Raccourcis rapides sous forme de pills tactiles (min 48px) */}
+            <div className="w-full flex items-center justify-center gap-2 mb-4 flex-wrap">
               {COUNTRIES.map((c) => (
                 <button
                   key={c.id}
                   onClick={() => setSelectedId(c.id)}
-                  className={`px-3 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer min-h-[40px] flex items-center gap-1.5 ${
+                  className={`px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer min-h-[48px] min-w-[48px] flex items-center justify-center gap-2 ${
                     selectedId === c.id
                       ? 'bg-[#55AAA5] text-[#0A1128] shadow-md shadow-[#55AAA5]/30 scale-102'
                       : 'bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white border border-white/10'
                   }`}
                 >
-                  <span>{c.flag}</span>
+                  <span className="text-base">{c.flag}</span>
                   <span>{c.name}</span>
                 </button>
               ))}
@@ -459,7 +459,8 @@ export const EuropePresenceSection: React.FC<EuropePresenceSectionProps> = ({
           <div className="bg-[#0B1E3F] text-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative border border-white/15 animate-in fade-in zoom-in-95">
             <button
               onClick={() => setShowInfoModal(false)}
-              className="absolute top-4 right-4 p-2 rounded-full text-slate-400 hover:text-white hover:bg-white/10 cursor-pointer"
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 min-w-[48px] min-h-[48px] p-3 flex items-center justify-center rounded-full text-slate-400 hover:text-white hover:bg-white/10 cursor-pointer"
+              aria-label="Fermer la fenêtre d'information"
             >
               <X className="w-5 h-5" />
             </button>
@@ -491,19 +492,19 @@ export const EuropePresenceSection: React.FC<EuropePresenceSectionProps> = ({
               </div>
             </div>
 
-            <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row gap-3">
               <button
                 onClick={() => {
                   setShowInfoModal(false);
                   onOpenContact('entreprise', `Question implantation - ${activeCountry.name}`);
                 }}
-                className="flex-1 py-3 rounded-xl text-xs font-bold text-[#0A1128] bg-[#55AAA5] hover:bg-[#6ec2bc] transition-all cursor-pointer text-center"
+                className="flex-1 min-h-[48px] py-3.5 px-4 rounded-xl text-xs sm:text-sm font-bold text-[#0A1128] bg-[#55AAA5] hover:bg-[#6ec2bc] transition-all cursor-pointer text-center flex items-center justify-center"
               >
                 Contacter ce bureau
               </button>
               <button
                 onClick={() => setShowInfoModal(false)}
-                className="px-4 py-3 rounded-xl text-xs font-bold text-slate-300 bg-white/10 hover:bg-white/15 transition-all cursor-pointer"
+                className="min-h-[48px] px-6 py-3.5 rounded-xl text-xs sm:text-sm font-bold text-slate-300 bg-white/10 hover:bg-white/15 transition-all cursor-pointer flex items-center justify-center"
               >
                 Fermer
               </button>

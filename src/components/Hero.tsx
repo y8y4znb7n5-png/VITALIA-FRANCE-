@@ -18,12 +18,22 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuickApply, onOpenContact }) =
   return (
     <section
       id="hero-section"
-      className="relative min-h-screen flex flex-col justify-center pt-24 pb-16 md:pt-28 md:pb-20 overflow-hidden bg-[#071C3C] text-white"
+      className="relative min-h-screen min-h-[100dvh] flex flex-col justify-center pt-28 sm:pt-32 md:pt-36 pb-16 md:pb-20 overflow-hidden bg-[#071C3C] text-white"
     >
-      {/* Halo lumineux & graphismes d'arrière-plan haute technologie légers */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/6 right-10 w-[550px] h-[550px] rounded-full bg-[#55AAA5]/15 blur-[120px]" />
-        <div className="absolute -bottom-24 -left-20 w-[450px] h-[450px] rounded-full bg-[#0B2F63]/60 blur-[110px]" />
+      {/* Halo lumineux & graphismes d'arrière-plan haute technologie (optimisés GPU pour iPhone/Safari) */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
+        <div 
+          className="absolute top-1/6 right-10 w-[460px] h-[460px] rounded-full opacity-60"
+          style={{
+            background: 'radial-gradient(circle, rgba(85,170,165,0.22) 0%, rgba(85,170,165,0.06) 45%, transparent 70%)',
+          }}
+        />
+        <div 
+          className="absolute -bottom-24 -left-20 w-[420px] h-[420px] rounded-full opacity-70"
+          style={{
+            background: 'radial-gradient(circle, rgba(11,47,99,0.7) 0%, rgba(11,47,99,0.25) 50%, transparent 75%)',
+          }}
+        />
         
         {/* Motifs filaires discrets */}
         <div className="absolute right-12 top-28 opacity-10 hidden xl:block">
@@ -80,7 +90,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuickApply, onOpenContact }) =
                 id="hero-btn-entreprise"
                 onClick={() => {
                   const el = document.getElementById('entreprises');
-                  el?.scrollIntoView({ behavior: 'smooth' });
+                  if (el) {
+                    const navHeight = 75;
+                    const y = el.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                  }
                 }}
                 className="group w-full sm:w-auto justify-center min-h-[52px] px-8 py-3.5 rounded-full bg-gradient-to-r from-[#55AAA5] to-[#3F8F8A] hover:from-[#62BBB6] hover:to-[#49A39D] text-[#071C3C] font-bold text-base flex items-center gap-2.5 shadow-lg shadow-[#55AAA5]/25 hover:shadow-xl hover:shadow-[#55AAA5]/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 cursor-pointer"
               >
@@ -92,7 +106,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuickApply, onOpenContact }) =
                 id="hero-btn-candidat"
                 onClick={() => {
                   const el = document.getElementById('candidats');
-                  el?.scrollIntoView({ behavior: 'smooth' });
+                  if (el) {
+                    const navHeight = 75;
+                    const y = el.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                  }
                 }}
                 className="group w-full sm:w-auto justify-center min-h-[52px] px-8 py-3.5 rounded-full bg-white/5 hover:bg-white/10 text-white font-semibold text-base border border-white/20 hover:border-[#55AAA5]/60 flex items-center gap-2.5 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 cursor-pointer"
               >

@@ -61,15 +61,15 @@ const AnimatedNumber: React.FC<{
   minDigits?: number;
 }> = ({ value, duration = 1.2, delay = 0, minDigits }) => {
   const nodeRef = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(nodeRef, { once: true, margin: '-20px' });
+  const isInView = useInView(nodeRef, { once: true, margin: '0px' });
 
   useEffect(() => {
-    if (!isInView) return;
     const node = nodeRef.current;
     if (!node) return;
 
+    // Direct animate if in view, or safety fallback for older iOS Safari WebKit
     let controls: { stop: () => void } | null = null;
-    const timeoutId = setTimeout(() => {
+    const runAnimation = () => {
       controls = animate(0, value, {
         duration,
         ease: [0.16, 1, 0.3, 1], // easeOutQuart fluide
@@ -77,12 +77,23 @@ const AnimatedNumber: React.FC<{
           node.textContent = Math.round(latest).toString();
         },
       });
-    }, delay * 1000);
-
-    return () => {
-      clearTimeout(timeoutId);
-      if (controls) controls.stop();
     };
+
+    if (isInView) {
+      const timeoutId = setTimeout(runAnimation, delay * 1000);
+      return () => {
+        clearTimeout(timeoutId);
+        if (controls) controls.stop();
+      };
+    } else {
+      // Safety fallback: if not intersected after 2.5s (e.g. iOS Safari IntersectionObserver quirk), show value
+      const fallbackTimer = setTimeout(() => {
+        if (node.textContent === '0') {
+          node.textContent = value.toString();
+        }
+      }, 2500);
+      return () => clearTimeout(fallbackTimer);
+    }
   }, [isInView, value, duration, delay]);
 
   return (
@@ -108,7 +119,7 @@ const StatCard: React.FC<{
       id={stat.id}
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-30px' }}
+      viewport={{ once: true, amount: 0.1 }}
       transition={{
         duration: 0.5,
         delay: delayIndex * 0.08,
@@ -164,9 +175,14 @@ export const KeyFiguresSection: React.FC = () => {
       id="chiffres-cles"
       className="relative py-14 sm:py-18 bg-[#06152D] text-white border-y border-white/10 overflow-hidden"
     >
-      {/* Halo subtil en arrière-plan */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[260px] bg-[#55AAA5]/5 blur-[90px] rounded-full" />
+      {/* Halo subtil en arrière-plan optimisé GPU */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden select-none">
+        <div 
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[520px] h-[240px] rounded-full opacity-60"
+          style={{
+            background: 'radial-gradient(ellipse, rgba(85,170,165,0.14) 0%, transparent 70%)',
+          }}
+        />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -175,7 +191,7 @@ export const KeyFiguresSection: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-40px' }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="text-center max-w-2xl mx-auto mb-10"
         >

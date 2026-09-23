@@ -17,31 +17,78 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: calc(5.5rem + env(safe-area-inset-top, 0px));
   -webkit-text-size-adjust: 100%;
+  overflow-x: clip;
+  max-width: 100vw;
 }
 
 body {
   font-family: var(--font-sans);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
   line-height: 1.6;
+  background-color: #071C3C;
+  color: #F2F4F7;
+  overflow-x: clip;
+  max-width: 100vw;
+  -webkit-overflow-scrolling: touch;
 }
 
 h1, h2, h3, .font-display {
   font-family: var(--font-display);
 }
 
-/* Optimisation mobile : éviter le zoom automatique sur iOS (Safari) sur les champs de formulaire */
+/* Optimisation mobile et iPhone (iOS Safari) */
 @media screen and (max-width: 768px) {
+  /* Éviter le zoom forcé indésirable d'iOS Safari sur les champs */
   input, select, textarea {
     font-size: 16px !important;
+    -webkit-appearance: none;
+    border-radius: 0.75rem;
+  }
+
+  /* Règle globale d'ergonomie tactile : hit-box minimale de 48px par 48px pour les boutons */
+  button, 
+  [role="button"], 
+  input[type="button"], 
+  input[type="submit"], 
+  input[type="reset"] {
+    min-height: 48px;
   }
 }
 
-/* Zone tactile optimisée pour les écrans tactiles */
-button, a, input, select {
+/* Zone tactile réactive & suppression des reflets de clic grisés sur iOS */
+button, a, input, select, textarea {
   touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Support matériel de lissage pour backdrop blur sur Safari iOS */
+.backdrop-blur-xs {
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.backdrop-blur-sm {
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.backdrop-blur-md {
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.backdrop-blur-lg {
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+.backdrop-blur-xl {
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
 }
 

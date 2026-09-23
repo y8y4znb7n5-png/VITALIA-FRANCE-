@@ -28,11 +28,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuickApply, onOpenContact 
               Cabinet de conseil en recrutement par approche directe dédié exclusivement aux industries de santé : Industrie Pharmaceutique, Biotechnologies, MedTech et Diagnostic In Vitro.
             </p>
 
-            {/* LinkedIn & Socials tactiles */}
+            {/* LinkedIn & Socials tactiles (garanti min 48px) */}
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <button
                 onClick={onOpenQuickApply}
-                className="min-h-[44px] inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-[#0077B5] hover:bg-[#005f93] active:bg-[#004b75] transition-all cursor-pointer"
+                className="min-h-[48px] inline-flex items-center gap-2 px-5 py-3 rounded-xl text-xs sm:text-sm font-semibold text-white bg-[#0077B5] hover:bg-[#005f93] active:bg-[#004b75] transition-all cursor-pointer"
               >
                 <Linkedin className="w-4 h-4" />
                 <span>Page LinkedIn & Candidatures</span>
@@ -40,7 +40,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuickApply, onOpenContact 
 
               <button
                 onClick={() => setShowBrandCharterModal(true)}
-                className="min-h-[44px] inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs sm:text-sm text-slate-300 bg-white/10 hover:bg-white/15 border border-white/10 transition-colors cursor-pointer"
+                className="min-h-[48px] inline-flex items-center gap-2 px-4 py-3 rounded-xl text-xs sm:text-sm text-slate-300 bg-white/10 hover:bg-white/15 border border-white/10 transition-colors cursor-pointer"
                 title="Consulter la charte graphique officielle"
               >
                 <Palette className="w-4 h-4 text-[#55AAA5]" />
@@ -54,12 +54,12 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuickApply, onOpenContact 
             <p className="text-xs sm:text-sm font-bold text-white uppercase tracking-wider">
               Pôles d'expertise
             </p>
-            <ul className="space-y-2 text-xs sm:text-sm text-slate-300">
-              <li><a href="#expertises" className="hover:text-white transition-colors py-1 inline-block">Industrie Pharmaceutique</a></li>
-              <li><a href="#expertises" className="hover:text-white transition-colors py-1 inline-block">Biotechnologies & ATMP</a></li>
-              <li><a href="#expertises" className="hover:text-white transition-colors py-1 inline-block">Dispositifs Médicaux (MedTech)</a></li>
-              <li><a href="#expertises" className="hover:text-white transition-colors py-1 inline-block">Diagnostic In Vitro & NGS</a></li>
-              <li><a href="#expertises" className="hover:text-white transition-colors py-1 inline-block">Santé Digitale & IA Médicale</a></li>
+            <ul className="space-y-1 text-xs sm:text-sm text-slate-300">
+              <li><a href="#expertises" className="hover:text-white transition-colors py-2 inline-flex items-center">Industrie Pharmaceutique</a></li>
+              <li><a href="#expertises" className="hover:text-white transition-colors py-2 inline-flex items-center">Biotechnologies & ATMP</a></li>
+              <li><a href="#expertises" className="hover:text-white transition-colors py-2 inline-flex items-center">Dispositifs Médicaux (MedTech)</a></li>
+              <li><a href="#expertises" className="hover:text-white transition-colors py-2 inline-flex items-center">Diagnostic In Vitro & NGS</a></li>
+              <li><a href="#expertises" className="hover:text-white transition-colors py-2 inline-flex items-center">Santé Digitale & IA Médicale</a></li>
             </ul>
           </div>
 
@@ -68,11 +68,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuickApply, onOpenContact 
             <p className="text-xs sm:text-sm font-bold text-white uppercase tracking-wider">
               Accompagnement
             </p>
-            <ul className="space-y-2 text-xs sm:text-sm text-slate-300">
+            <ul className="space-y-1 text-xs sm:text-sm text-slate-300">
               <li>
                 <button
                   onClick={() => onOpenContact('entreprise', 'Executive Search & Direction')}
-                  className="hover:text-white transition-colors text-left py-1 inline-block cursor-pointer"
+                  className="hover:text-white transition-colors text-left py-2 inline-flex items-center cursor-pointer"
                 >
                   Executive Search & C-Level
                 </button>
@@ -80,7 +80,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuickApply, onOpenContact 
               <li>
                 <button
                   onClick={() => onOpenContact('entreprise', 'Experts R&D & Clinique')}
-                  className="hover:text-white transition-colors text-left py-1 inline-block cursor-pointer"
+                  className="hover:text-white transition-colors text-left py-2 inline-flex items-center cursor-pointer"
                 >
                   Experts R&D & Clinique
                 </button>
@@ -88,7 +88,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuickApply, onOpenContact 
               <li>
                 <button
                   onClick={() => onOpenContact('entreprise', 'Affaires Réglementaires & QA')}
-                  className="hover:text-white transition-colors text-left py-1 inline-block cursor-pointer"
+                  className="hover:text-white transition-colors text-left py-2 inline-flex items-center cursor-pointer"
                 >
                   Affaires Réglementaires & QA
                 </button>
@@ -96,7 +96,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuickApply, onOpenContact 
               <li>
                 <button
                   onClick={onOpenQuickApply}
-                  className="hover:text-white transition-colors text-left text-[#55AAA5] font-semibold py-1 inline-block cursor-pointer"
+                  className="hover:text-white transition-colors text-left text-[#55AAA5] font-semibold py-2 inline-flex items-center cursor-pointer"
                 >
                   Transmettre un profil
                 </button>
@@ -163,7 +163,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuickApply, onOpenContact 
           <div className="bg-white text-slate-800 rounded-3xl max-w-lg w-full max-h-[92dvh] overflow-y-auto p-5 sm:p-8 shadow-2xl relative">
             <button
               onClick={() => setShowBrandCharterModal(false)}
-              className="absolute top-3 right-3 sm:top-5 sm:right-5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+              className="absolute top-2 right-2 sm:top-4 sm:right-4 min-w-[48px] min-h-[48px] p-3 flex items-center justify-center rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
               aria-label="Fermer la charte"
             >
               <X className="w-5 h-5" />
@@ -211,7 +211,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuickApply, onOpenContact 
 
             <button
               onClick={() => setShowBrandCharterModal(false)}
-              className="mt-6 w-full py-2.5 rounded-xl text-xs font-bold text-white bg-[#0B2F63] hover:bg-[#18427F]"
+              className="mt-6 w-full min-h-[48px] py-3 px-6 rounded-xl text-xs sm:text-sm font-bold text-white bg-[#0B2F63] hover:bg-[#18427F] transition-all cursor-pointer flex items-center justify-center"
             >
               Fermer
             </button>

@@ -67,7 +67,7 @@ export const ExpertiseSectors: React.FC<ExpertiseSectorsProps> = ({
                 <button
                   type="button"
                   onClick={() => onSelectSectorForContact('Biotechnologies & Thérapies Avancées')}
-                  className="group inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/25 hover:border-[#55AAA5] bg-white/5 hover:bg-[#55AAA5] text-white hover:text-[#06152D] text-sm font-medium transition-all duration-200 cursor-pointer shadow-md"
+                  className="group min-h-[48px] inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-white/25 hover:border-[#55AAA5] bg-white/5 hover:bg-[#55AAA5] text-white hover:text-[#06152D] text-sm font-medium transition-all duration-200 cursor-pointer shadow-md"
                 >
                   <span>en savoir plus</span>
                   <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -226,7 +226,7 @@ export const ExpertiseSectors: React.FC<ExpertiseSectorsProps> = ({
                 <button
                   type="button"
                   onClick={() => onSelectSectorForContact('Industrie Pharmaceutique & Production Industrielle')}
-                  className="group inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/25 hover:border-[#55AAA5] bg-white/5 hover:bg-[#55AAA5] text-white hover:text-[#06152D] text-sm font-medium transition-all duration-200 cursor-pointer shadow-md"
+                  className="group min-h-[48px] inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-white/25 hover:border-[#55AAA5] bg-white/5 hover:bg-[#55AAA5] text-white hover:text-[#06152D] text-sm font-medium transition-all duration-200 cursor-pointer shadow-md"
                 >
                   <span>en savoir plus</span>
                   <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -259,7 +259,7 @@ export const ExpertiseSectors: React.FC<ExpertiseSectorsProps> = ({
                 <button
                   type="button"
                   onClick={() => onSelectSectorForContact('Dispositifs Médicaux & MedTech')}
-                  className="group inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/25 hover:border-[#55AAA5] bg-white/5 hover:bg-[#55AAA5] text-white hover:text-[#06152D] text-sm font-medium transition-all duration-200 cursor-pointer shadow-md"
+                  className="group min-h-[48px] inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-white/25 hover:border-[#55AAA5] bg-white/5 hover:bg-[#55AAA5] text-white hover:text-[#06152D] text-sm font-medium transition-all duration-200 cursor-pointer shadow-md"
                 >
                   <span>en savoir plus</span>
                   <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -417,7 +417,7 @@ export const ExpertiseSectors: React.FC<ExpertiseSectorsProps> = ({
                 <button
                   type="button"
                   onClick={() => onSelectSectorForContact('Diagnostic In Vitro, Logiciels Médicaux & e-Santé')}
-                  className="group inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/25 hover:border-[#55AAA5] bg-white/5 hover:bg-[#55AAA5] text-white hover:text-[#06152D] text-sm font-medium transition-all duration-200 cursor-pointer shadow-md"
+                  className="group min-h-[48px] inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-white/25 hover:border-[#55AAA5] bg-white/5 hover:bg-[#55AAA5] text-white hover:text-[#06152D] text-sm font-medium transition-all duration-200 cursor-pointer shadow-md"
                 >
                   <span>en savoir plus</span>
                   <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

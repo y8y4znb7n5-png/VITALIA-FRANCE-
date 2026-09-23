@@ -29,11 +29,11 @@ export const TestimonialsSection: React.FC = () => {
             </p>
           </div>
 
-          {/* Filtres simples tactiles (min 44px) */}
+          {/* Filtres tactiles au moins 48px par 48px */}
           <div className="inline-flex p-1 rounded-xl bg-white/5 border border-white/10 self-start sm:self-auto">
             <button
               onClick={() => setFilter('all')}
-              className={`min-h-[44px] px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+              className={`min-h-[48px] min-w-[48px] px-4 py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all cursor-pointer flex items-center justify-center ${
                 filter === 'all' ? 'bg-[#55AAA5] text-[#071C3C] font-bold shadow-xs' : 'text-slate-300 hover:text-white'
               }`}
             >
@@ -41,7 +41,7 @@ export const TestimonialsSection: React.FC = () => {
             </button>
             <button
               onClick={() => setFilter('entreprise')}
-              className={`min-h-[44px] px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+              className={`min-h-[48px] min-w-[48px] px-4 py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all cursor-pointer flex items-center justify-center ${
                 filter === 'entreprise' ? 'bg-[#55AAA5] text-[#071C3C] font-bold shadow-xs' : 'text-slate-300 hover:text-white'
               }`}
             >
@@ -49,7 +49,7 @@ export const TestimonialsSection: React.FC = () => {
             </button>
             <button
               onClick={() => setFilter('candidat')}
-              className={`min-h-[44px] px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+              className={`min-h-[48px] min-w-[48px] px-4 py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all cursor-pointer flex items-center justify-center ${
                 filter === 'candidat' ? 'bg-[#55AAA5] text-[#071C3C] font-bold shadow-xs' : 'text-slate-300 hover:text-white'
               }`}
             >
