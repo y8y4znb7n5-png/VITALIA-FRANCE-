@@ -38,15 +38,15 @@ const COUNTRIES: CountryData[] = [
   },
   {
     id: 'suisse',
-    name: 'Suisse',
-    labelEn: 'Switzerland',
+    name: 'Suisse Romande',
+    labelEn: 'Suisse Romande',
     flag: '🇨🇭',
-    city: 'Bâle & Genève',
+    city: 'Genève, Lausanne & Neuchâtel',
     image: 'https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?auto=format&fit=crop&w=900&q=80',
     description:
-      'Au cœur du premier pôle pharmaceutique et biotechnologique mondial. Nous accompagnons les multinationales de Bâle et les biotechs innovantes de la Health Valley lémanique dans le recrutement de profils C-Level, PhD et directeurs scientifiques.',
-    details: 'Spécialisation dans les thérapies innovantes, la réglementation Swissmedic et la mobilité transfrontalière.',
-    stats: 'Présence Bâle (EuroAirport) & Arc lémanique',
+      'Intervention ciblée exclusivement en Suisse romande. Nous accompagnons les biotechs innovantes de la Health Valley lémanique, les medtechs et acteurs de pointe à Genève, Lausanne et Neuchâtel dans le recrutement de profils C-Level, PhD, directeurs scientifiques et experts métiers.',
+    details: 'Spécialisation exclusive en Suisse romande (Genève, Lausanne, Neuchâtel) : thérapies innovantes, microtechnique, dispositifs médicaux (MedTech), réglementation Swissmedic et mobilités transfrontalières.',
+    stats: 'Hubs : Genève • Lausanne • Neuchâtel',
   },
   {
     id: 'luxembourg',
@@ -112,15 +112,15 @@ export const EuropePresenceSection: React.FC<EuropePresenceSectionProps> = ({
     },
     {
       countryId: 'suisse',
-      label: 'Switzerland',
-      labelX: 495,
+      label: 'Suisse Romande',
+      labelX: 510,
       labelY: 370,
-      lineX1: 495,
+      lineX1: 500,
       lineY1: 382,
-      lineX2: 432,
-      lineY2: 408,
-      vX: 422,
-      vY: 414,
+      lineX2: 422,
+      lineY2: 412,
+      vX: 412,
+      vY: 420,
     },
   ];
 
@@ -140,7 +140,7 @@ export const EuropePresenceSection: React.FC<EuropePresenceSectionProps> = ({
             Nos expertises à l'échelle européenne
           </h2>
           <p className="mt-2 text-sm sm:text-base text-slate-300 font-medium">
-            Nos implantations et hubs d'intervention : <strong className="text-[#55AAA5]">France, Suisse et Luxembourg</strong>
+            Nos implantations et hubs d'intervention : <strong className="text-[#55AAA5]">France, Suisse romande (Genève, Lausanne, Neuchâtel) et Luxembourg</strong>
           </p>
         </div>
 

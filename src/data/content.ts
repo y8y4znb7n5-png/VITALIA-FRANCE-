@@ -74,7 +74,7 @@ export const SERVICES_CANDIDATS: ServiceItem[] = [
       'Présentation directe aux décideurs clés (Direction Générale, VP R&D, DRH)',
       'Découverte des projets scientifiques majeurs avant leur officialisation',
       'Respect scrupuleux de votre confidentialité et absence de diffusion sans accord',
-      'Opportunités en France, Suisse, Luxembourg et à l’international'
+      'Opportunités en France, Suisse romande (Genève, Lausanne, Neuchâtel), Luxembourg et à l’international'
     ],
     iconName: 'KeyRound',
     highlightMetric: '70% des opportunités traitées en exclusivité confidentielle'
