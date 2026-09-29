@@ -112,7 +112,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuickApply, onOpenContact 
             <div className="space-y-3 text-xs sm:text-sm text-slate-300">
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-[#55AAA5] shrink-0" />
-                <span>France • Suisse • Luxembourg • Belgique • Allemagne</span>
+                <span>France • Suisse • Luxembourg</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-[#55AAA5] shrink-0" />

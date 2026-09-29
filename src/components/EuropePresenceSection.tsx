@@ -60,30 +60,6 @@ const COUNTRIES: CountryData[] = [
     details: 'Accompagnement de projets européens innovants et de structures de biotechnologies en forte expansion.',
     stats: 'Pôle HealthTech & Recherche translationnelle',
   },
-  {
-    id: 'belgique',
-    name: 'Belgique',
-    labelEn: 'Belgium',
-    flag: '🇧🇪',
-    city: 'Bruxelles & Gosselies',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Grand_Place_Bruselas_2.jpg/1280px-Grand_Place_Bruselas_2.jpg',
-    description:
-      'Centre névralgique européen du biomanufacturing, des vaccins et des thérapies cellulaires. Nos consultants recrutent des ingénieurs de production, des responsables assurance qualité (QA) et des spécialistes validation en environnement cGMP.',
-    details: 'Forte présence autour du Biopark de Charleroi, de Bruxelles et du pôle biotechnologique flamand.',
-    stats: 'Biopark Charleroi & Hub Pharma Bruxelles',
-  },
-  {
-    id: 'allemagne',
-    name: 'Allemagne',
-    labelEn: 'Germany',
-    flag: '🇩🇪',
-    city: 'Francfort & Munich',
-    image: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=900&q=80',
-    description:
-      'Premier marché de santé en Europe, reconnu pour son leadership en ingénierie médicale (MedTech), chimie fine et instrumentation de pointe. Nous identifions des ingénieurs R&D et des experts techniques de haut niveau.',
-    details: 'Missions sur les bassins de Munich (Martinsried), Francfort et la MedTech Valley du Bade-Wurtemberg.',
-    stats: 'Clusters Munich Martinsried & Francfort Rhin-Main',
-  },
 ];
 
 interface EuropePresenceSectionProps {
@@ -104,28 +80,12 @@ export const EuropePresenceSection: React.FC<EuropePresenceSectionProps> = ({
     suisse: 'suisse',
     switzerland: 'suisse',
     luxembourg: 'luxembourg',
-    belgique: 'belgique',
-    belgium: 'belgique',
-    allemagne: 'allemagne',
-    germany: 'allemagne',
   };
 
   const activeCountry = COUNTRIES.find((c) => c.id === selectedId) || COUNTRIES[0];
 
-  // Marqueurs avec libellés fidèles à la capture d'écran, espacés pour une visibilité totale
+  // Marqueurs avec libellés, espacés pour une visibilité totale
   const markers = [
-    {
-      countryId: 'belgique',
-      label: 'Belgium',
-      labelX: 350,
-      labelY: 190,
-      lineX1: 350,
-      lineY1: 202,
-      lineX2: 352,
-      lineY2: 296,
-      vX: 352,
-      vY: 308,
-    },
     {
       countryId: 'luxembourg',
       label: 'Luxembourg',
@@ -137,18 +97,6 @@ export const EuropePresenceSection: React.FC<EuropePresenceSectionProps> = ({
       lineY2: 320,
       vX: 384,
       vY: 331,
-    },
-    {
-      countryId: 'allemagne',
-      label: 'Germany',
-      labelX: 520,
-      labelY: 215,
-      lineX1: 520,
-      lineY1: 226,
-      lineX2: 468,
-      lineY2: 284,
-      vX: 462,
-      vY: 294,
     },
     {
       countryId: 'france',
@@ -192,7 +140,7 @@ export const EuropePresenceSection: React.FC<EuropePresenceSectionProps> = ({
             Nos expertises à l'échelle européenne
           </h2>
           <p className="mt-2 text-sm sm:text-base text-slate-300 font-medium">
-            Nos implantations et hubs d'intervention : <strong className="text-[#55AAA5]">France, Suisse, Luxembourg, Belgique et Allemagne</strong>
+            Nos implantations et hubs d'intervention : <strong className="text-[#55AAA5]">France, Suisse et Luxembourg</strong>
           </p>
         </div>
 

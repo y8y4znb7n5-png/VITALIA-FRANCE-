@@ -104,7 +104,7 @@ export default function App() {
           onOpenQuickApply={(sectorTitle) => handleOpenQuickApply(undefined, sectorTitle)}
         />
 
-        {/* Rayonnement Européen de nos expertises : Carte interactive (France, Suisse, Luxembourg, Belgique, Allemagne) */}
+        {/* Rayonnement Européen de nos expertises : Carte interactive (France, Suisse, Luxembourg) */}
         <EuropePresenceSection
           onOpenContact={handleOpenContact}
           onOpenQuickApply={handleOpenQuickApply}
